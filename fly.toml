@@ -1,23 +1,29 @@
-app = "moviemixtapecdn"
-primary_region = "sin"
+app = 'moviemixtapecdn'
+primary_region = 'ams'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  PORT = "8080"
-  NODE_ENV = "production"
-  LOG_LEVEL = "info"
-  MAX_RANGE_SIZE = "104857600"
-  TOKEN_TTL_SECONDS = "3600"
-  UPSTREAM_TIMEOUT_MS = "15000"
-  STREAM_SECRET="your_32_char_secret"
-  ALLOWED_ORIGINS="https://myfrontend.com"
+  ALLOWED_ORIGINS = 'https://myfrontend.com'
+  LOG_LEVEL = 'info'
+  MAX_RANGE_SIZE = '104857600'
+  NODE_ENV = 'production'
+  PORT = '8080'
+  STREAM_SECRET = 'your_32_char_secret'
+  TOKEN_TTL_SECONDS = '3600'
+  UPSTREAM_TIMEOUT_MS = '15000'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
