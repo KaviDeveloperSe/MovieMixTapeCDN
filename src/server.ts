@@ -6,7 +6,7 @@ const signals = ["SIGINT", "SIGTERM"];
 
 async function start() {
   try {
-    await app.listen({ port: config.PORT, host: "0.0.0.0" });
+    await app.listen({ port: config.PORT, host: "::" });
     app.log.info(
       `MovieMixTapeCDN listening on port ${config.PORT} in ${config.NODE_ENV} mode.`,
     );
