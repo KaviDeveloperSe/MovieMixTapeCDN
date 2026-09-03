@@ -42,6 +42,14 @@ export function buildApp() {
 
     app.register(downloadRoutes);
 
+    app.get('/', async (request, reply) => {
+        reply.send({
+            name: 'MovieMixTapeCDN',
+            status: 'online',
+            version: '1.0.0'
+        });
+    });
+
     app.setErrorHandler((error, request, reply) => {
         if (error instanceof ApplicationError) {
             reply.status(error.status).send({
