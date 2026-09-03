@@ -7,7 +7,10 @@ import cors from '@fastify/cors';
 import { logger } from './observability/logger';
 
 export function buildApp() {
-    const app = Fastify({ loggerInstance: logger, disableRequestLogging: true, maxParamLength: 4096 });
+    const app = Fastify({ 
+        loggerInstance: logger,
+        routerOptions: { maxParamLength: 4096 }
+    });
 
     app.addHook('onRequest', (request, reply, done) => {
         request.log.info({ reqId: request.id, method: request.method, url: request.url, ip: request.ip }, 'Incoming request');
