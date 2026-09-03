@@ -1,3 +1,8 @@
+# fly.toml app configuration file generated for moviemixtapecdn on 2026-09-03T17:40:18Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'moviemixtapecdn'
 primary_region = 'ams'
 
