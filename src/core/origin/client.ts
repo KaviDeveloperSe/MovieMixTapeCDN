@@ -1,7 +1,7 @@
 import { OriginRequestOptions, OriginResponse } from './types';
 import { formatRangeHeader } from '../range/parser';
 import { ApplicationError } from '../../utils/errors';
-import { Agent } from 'undici';
+import { Agent, fetch } from 'undici';
 
 const proxyAgent = new Agent({ connections: 1000, pipelining: 10, keepAliveTimeout: 30000, keepAliveMaxTimeout: 60000 });
 
@@ -28,14 +28,14 @@ export async function fetchFromOrigin(options: OriginRequestOptions): Promise<Or
     options.abortSignal.addEventListener('abort', abortHandler, { once: true });
 
     try {
-        const response = await fetch(options.url, { method: options.method, headers: fetchHeaders, signal: timeoutController.signal, redirect: 'follow', dispatcher: proxyAgent } as RequestInit);
+        const response = await fetch(options.url, { method: options.method, headers: fetchHeaders as any, signal: timeoutController.signal, redirect: 'follow', dispatcher: proxyAgent });
 
         clearTimeout(timeoutId);
         options.abortSignal.removeEventListener('abort', abortHandler);
 
         if (response.status >= 500) throw new ApplicationError('ORIGIN_BAD_RESPONSE', `Upstream returned status ${response.status}`, 502);
 
-        return { status: response.status, headers: response.headers, body: response.body };
+        return { status: response.status, headers: response.headers, body: response.body as unknown as ReadableStream<Uint8Array> | null };
     } catch (error: any) {
         clearTimeout(timeoutId);
         options.abortSignal.removeEventListener('abort', abortHandler);
