@@ -1,5 +1,5 @@
 app = 'moviemixtapecdn'
-primary_region = 'ams'
+primary_region = 'sin'
 
 [build]
   dockerfile = 'Dockerfile'
@@ -13,7 +13,6 @@ primary_region = 'ams'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
+  memory = '256mb'
   cpus = 1
   memory_mb = 256
