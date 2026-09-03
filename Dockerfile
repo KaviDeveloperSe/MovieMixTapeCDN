@@ -31,4 +31,4 @@ USER cdn
 
 EXPOSE 8080
 
-CMD ["npm", "dev"]
+CMD ["node", "dist/server.js"]
