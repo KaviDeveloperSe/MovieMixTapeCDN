@@ -4,16 +4,6 @@ primary_region = 'ams'
 [build]
   dockerfile = 'Dockerfile'
 
-[env]
-  ALLOWED_ORIGINS = 'https://myfrontend.com'
-  LOG_LEVEL = 'info'
-  MAX_RANGE_SIZE = '104857600'
-  NODE_ENV = 'production'
-  PORT = '8080'
-  STREAM_SECRET = '028382e50fe0b5a78f2725ade2e3043b'
-  TOKEN_TTL_SECONDS = '3600'
-  UPSTREAM_TIMEOUT_MS = '15000'
-
 [http_service]
   internal_port = 8080
   force_https = true
