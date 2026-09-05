@@ -1,11 +1,11 @@
 import { StreamProvider, ResolvedStream } from '../types';
-import { resolveVidlinkStream } from './resolver';
+import { resolvenetmirrorStream } from './resolver';
 import { TokenPayload } from '../../core/token/types';
 
-export class VidlinkProvider implements StreamProvider {
-    name = 'vidlink';
+export class netmirrorProvider implements StreamProvider {
+    name = 'netmirror';
 
     async resolve(payload: TokenPayload): Promise<ResolvedStream> {
-        return await resolveVidlinkStream(payload);
+        return await resolvenetmirrorStream(payload);
     }
 }

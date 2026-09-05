@@ -1,7 +1,7 @@
 import { providerRegistry } from './registry';
-import { VidlinkProvider } from './vidlink';
+import { netmirrorProvider } from './netmirror';
 
-providerRegistry.register(new VidlinkProvider());
+providerRegistry.register(new netmirrorProvider());
 
 export { providerRegistry };
 export * from './types';
